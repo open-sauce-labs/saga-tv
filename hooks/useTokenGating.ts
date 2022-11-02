@@ -8,7 +8,7 @@ type TokenGatingHook = () => { isHolder: boolean; isChecking: boolean }
 
 export const useTokenGating: TokenGatingHook = () => {
 	const [isHolder, setIsHolder] = useState(false)
-	const [isChecking, setIsChecking] = useState(false)
+	const [isChecking, setIsChecking] = useState(true)
 	const { connection } = useConnection()
 	const { publicKey } = useWallet()
 	const makeCancelable = useCancelablePromise()
