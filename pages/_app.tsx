@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<ThemeProvider theme={theme}>
 			<ConnectionProvider endpoint={endpoint}>
-				<WalletProvider wallets={wallets[network]} autoConnect>
+				<WalletProvider wallets={wallets[network]}>
 					<WalletDialogProvider featuredWallets={6}>
 						<ToastProvider>
 							<CssBaseline />

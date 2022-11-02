@@ -5,3 +5,174 @@
 	min-height: 100vh;
 	display: flex;
 }
+
+.background-icon {
+	@include defaultFadeIn(4s);
+}
+
+.saga-image {
+	max-width: 50%;
+	width: 220px;
+	height: auto;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, 100%);
+	z-index: 3;
+
+	animation-name: slideSagaIn;
+	animation-duration: 16s;
+	animation-delay: 6s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes slideSagaIn {
+	0% {
+		transform: translate(-50%, 100%);
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		transform: translate(-50%, 25%);
+	}
+}
+
+.saga-pass-image {
+	height: auto;
+	position: absolute;
+	top: -40%;
+	box-shadow: 0 0 30px 15px #fff, 0 0 50px 30px #631b8c, 0 0 70px 45px #820096;
+
+	animation-name: rainPassDown, glowing;
+	animation-fill-mode: forwards;
+	transition: ease-in-out;
+	animation-iteration-count: 1, infinite;
+	animation-direction: normal, alternate;
+
+	// width: 60px;
+	// transform: rotate(20deg);
+	// left: 50%;
+	// z-index: 4;
+	// animation-duration: 10s, 1s;
+	// animation-delay: 1s, 0s;
+}
+
+@keyframes rainPassDown {
+	from {
+		top: -40%;
+	}
+
+	to {
+		top: 140%;
+	}
+}
+
+@keyframes glowing {
+	from {
+		// box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px rgb(205, 0, 205), 0 0 40px rgb(1, 232, 232), 0 0 60px #a40079;
+		box-shadow: 0 0 10px #fff, 0 0 20px rgb(205, 0, 205), 0 0 40px rgb(1, 232, 232), 0 0 60px #a40079;
+	}
+	to {
+		// box-shadow: 0 0 20px #fff, 0 0 30px #df36af, 0 0 40px #a6147f, 0 0 50px #820096, 0 0 60px #631b8c;
+		box-shadow: 0 0 10px #fff, 0 0 20px #df36af, 0 0 30px #a6147f, 0 0 50px #820096, 0 0 60px #631b8c;
+	}
+}
+
+.video {
+	opacity: 0;
+	animation-name: fadeInToHalfOpacity;
+	animation-duration: 16s;
+	animation-delay: 24s;
+	animation-fill-mode: forwards;
+}
+
+// SUN RAYS
+
+/* keyframes for animation;  simple 0 to 360 */
+@keyframes spin {
+	from {
+		transform: translate(-50%, 60%) rotate(0deg);
+	}
+	to {
+		transform: translate(-50%, 60%) rotate(360deg);
+	}
+}
+
+.sun {
+	width: 1200px;
+	height: 1200px;
+	// position: relative;
+	// left: 50%;
+	// bottom: -5%;
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	// transform: translateX(-50%);
+	background: radial-gradient(transparent 50%, white), radial-gradient(rgb(30, 1, 30), transparent 70%);
+	-webkit-mask-image: radial-gradient(rgba(0, 0, 0, 1) 40%, transparent 65%);
+	mask-image: radial-gradient(rgba(0, 0, 0, 1) 40%, transparent 65%);
+	border-radius: 50%;
+	opacity: 0;
+
+	animation-name: spin, fadeIn;
+	animation-delay: 6s, 6s;
+	animation-duration: 4s, 6s;
+	animation-iteration-count: infinite, 1;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+
+	&::after,
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transform-origin: center;
+		border-radius: 50%;
+		-webkit-mask-image: radial-gradient(rgba(0, 0, 0, 1) 40%, transparent 65%);
+		mask-image: radial-gradient(rgba(0, 0, 0, 1) 40%, transparent 65%);
+	}
+
+	&::before {
+		background: repeating-conic-gradient(from 0deg, rgba(137, 61, 192, 0.25) 0deg 20deg, transparent 20deg 40deg);
+		animation: rotate 720s linear, scale 3s linear infinite;
+	}
+
+	&::after {
+		transform: rotate(15deg);
+		animation: rotate 360s linear;
+	}
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes scale {
+	0% {
+		transform: scale(2);
+	}
+	20% {
+		transform: scale(2.4);
+	}
+	40% {
+		transform: scale(1.6);
+	}
+	60% {
+		transform: scale(2.2);
+	}
+	70% {
+		transform: scale(1.8);
+	}
+	100% {
+		transform: scale(2);
+	}
+}

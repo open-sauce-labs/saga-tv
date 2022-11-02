@@ -1,7 +1,7 @@
-@mixin defaultFadeIn {
+@mixin defaultFadeIn($duration: 2s) {
 	opacity: 0;
 	animation-name: fadeIn;
-	animation-duration: 2s;
+	animation-duration: $duration;
 	animation-delay: 0.5s;
 	animation-fill-mode: forwards;
 }
@@ -22,5 +22,14 @@
 	}
 	to {
 		opacity: 1;
+	}
+}
+
+@keyframes fadeInToHalfOpacity {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 0.6;
 	}
 }
