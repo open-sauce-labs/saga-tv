@@ -31,7 +31,7 @@ const TV: React.FC = () => {
 				overflow: 'hidden',
 			}}
 		>
-			{[...Array((Math.floor(width / 300) || 1) * 40)].map((n, i) => {
+			{[...Array((Math.floor(width / 300) || 1) * 50)].map((n, i) => {
 				return (
 					<Image
 						src={SagaPassImage1}
@@ -52,7 +52,7 @@ const TV: React.FC = () => {
 					/>
 				)
 			})}
-			{[...Array((Math.floor(width / 300) || 1) * 40)].map((n, i) => {
+			{[...Array((Math.floor(width / 300) || 1) * 50)].map((n, i) => {
 				return (
 					<Image
 						src={SagaPassImage2}

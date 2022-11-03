@@ -27,7 +27,7 @@ const Home: NextPage = () => {
 						textAlign: 'center',
 					}}
 				>
-					<Typography variant='h5' pb={2}>
+					<Typography variant='h6' pb={2}>
 						<span style={{ textDecoration: 'line-through' }}>Prepare</span> connect your wallet
 					</Typography>
 					<WalletMultiButtonDynamic variant='contained' color='primary' disabled={false} />
@@ -44,7 +44,7 @@ const Home: NextPage = () => {
 						textAlign: 'center',
 					}}
 				>
-					<Typography variant='h5' pb={2}>
+					<Typography variant='h6' pb={2}>
 						Get back when you find yourself a Saga Pass NFT lol
 					</Typography>
 				</Box>
