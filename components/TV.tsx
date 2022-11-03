@@ -8,14 +8,19 @@ import useWindowDimensions from 'hooks/useWindowDimensions'
 // import graphVideo from 'public/assets/graph.mp4'
 import { useEffect } from 'react'
 import Image from 'next/image'
+import Confetti from 'react-dom-confetti'
+import useToggle from 'hooks/useToggle'
+import useInterval from 'hooks/useInterval'
 
 const random = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min)
 
 const TV: React.FC = () => {
 	const { height, width } = useWindowDimensions()
 	const [play] = useSound('/assets/sounds/background-song.mp3', { interrupt: false })
+	const [isActive, toggleActive] = useToggle()
 
 	useEffect(play, [play])
+	useInterval(toggleActive, 18000) // set to true every 36 seconds
 
 	return (
 		<Box
@@ -26,7 +31,7 @@ const TV: React.FC = () => {
 				overflow: 'hidden',
 			}}
 		>
-			{[...Array((Math.floor(width / 300) || 1) * 52)].map((n, i) => {
+			{[...Array((Math.floor(width / 300) || 1) * 40)].map((n, i) => {
 				return (
 					<Image
 						src={SagaPassImage1}
@@ -47,7 +52,7 @@ const TV: React.FC = () => {
 					/>
 				)
 			})}
-			{[...Array((Math.floor(width / 300) || 1) * 52)].map((n, i) => {
+			{[...Array((Math.floor(width / 300) || 1) * 40)].map((n, i) => {
 				return (
 					<Image
 						src={SagaPassImage2}
@@ -105,6 +110,54 @@ const TV: React.FC = () => {
 			>
 				<source src='/assets/graph.mp4' type='video/mp4' />
 			</video>
+			<Box
+				style={{
+					position: 'absolute',
+					bottom: 0,
+					left: 0,
+					zIndex: -2,
+				}}
+			>
+				<Confetti
+					active={isActive}
+					config={{
+						angle: 45,
+						spread: 78,
+						startVelocity: 60,
+						elementCount: 200,
+						dragFriction: 0.13,
+						duration: 10000,
+						stagger: 1,
+						width: '10px',
+						height: '10px',
+						colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
+					}}
+				/>
+			</Box>
+			<Box
+				style={{
+					position: 'absolute',
+					bottom: 0,
+					right: 0,
+					zIndex: -2,
+				}}
+			>
+				<Confetti
+					active={isActive}
+					config={{
+						angle: 135,
+						spread: 78,
+						startVelocity: 60,
+						elementCount: 200,
+						dragFriction: 0.13,
+						duration: 10000,
+						stagger: 1,
+						width: '10px',
+						height: '10px',
+						colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
+					}}
+				/>
+			</Box>
 		</Box>
 	)
 }
