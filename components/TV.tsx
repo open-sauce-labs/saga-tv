@@ -6,7 +6,7 @@ import SagaPassImage1 from 'public/assets/saga-pass-1.png'
 import SagaPassImage2 from 'public/assets/saga-pass-2.png'
 import useWindowDimensions from 'hooks/useWindowDimensions'
 // import graphVideo from 'public/assets/graph.mp4'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import Confetti from 'react-dom-confetti'
 import useToggle from 'hooks/useToggle'
@@ -20,7 +20,7 @@ const TV: React.FC = () => {
 	const [isActive, toggleActive] = useToggle()
 
 	useEffect(play, [play])
-	useInterval(toggleActive, 18000) // set to true every 36 seconds
+	useInterval(toggleActive, 15000) // set to true every 30 seconds
 
 	return (
 		<Box
@@ -31,48 +31,12 @@ const TV: React.FC = () => {
 				overflow: 'hidden',
 			}}
 		>
-			{[...Array((Math.floor(width / 300) || 1) * 50)].map((n, i) => {
-				return (
-					<Image
-						src={SagaPassImage1}
-						alt='Saga Pass NFT'
-						width={264}
-						height={353}
-						key={i}
-						style={{
-							maxWidth: '12%',
-							width: `${random(40, 60)}px`,
-							transform: `rotate(${random(-30, 30)}deg)`,
-							left: `${random(0, 100)}%`,
-							zIndex: `${random(-1, 5)}`,
-							animationDuration: `${random(2, 16)}s, ${random(1, 2)}s`,
-							animationDelay: `${random(4, 216)}s, 0s`,
-						}}
-						className='saga-pass-image'
-					/>
-				)
-			})}
-			{[...Array((Math.floor(width / 300) || 1) * 50)].map((n, i) => {
-				return (
-					<Image
-						src={SagaPassImage2}
-						alt='Saga Pass NFT'
-						width={264}
-						height={353}
-						key={i}
-						style={{
-							maxWidth: '12%',
-							width: `${random(40, 60)}px`,
-							transform: `rotate(${random(-30, 30)}deg)`,
-							left: `${random(0, 100)}%`,
-							zIndex: `${random(-1, 5)}`,
-							animationDuration: `${random(2, 16)}s, ${random(1, 2)}s`,
-							animationDelay: `${random(4, 216)}s, 0s`,
-						}}
-						className='saga-pass-image'
-					/>
-				)
-			})}
+			{[...Array((Math.floor(width / 300) || 1) * 60)].map((n, i) => (
+				<SagaPassImage image={SagaPassImage1} key={i} />
+			))}
+			{[...Array((Math.floor(width / 300) || 1) * 60)].map((n, i) => (
+				<SagaPassImage image={SagaPassImage2} key={i} />
+			))}
 			<Image src={SagaImage} alt='Saga phone' width={140} height={340} className='saga-image' />
 			<BackgroundIcon
 				className='background-icon'
@@ -163,3 +127,20 @@ const TV: React.FC = () => {
 }
 
 export default TV
+
+const SagaPassImage: React.FC<{ image: StaticImageData }> = ({ image }) => {
+	const style = useMemo(
+		() => ({
+			maxWidth: '12%',
+			width: `${random(40, 60)}px`,
+			transform: `rotate(${random(-30, 30)}deg)`,
+			left: `${random(0, 100)}%`,
+			zIndex: `${random(-1, 5)}`,
+			animationDuration: `${random(2, 16)}s, ${random(1, 2)}s`,
+			animationDelay: `${random(4, 216)}s, 0s`,
+		}),
+		[]
+	)
+
+	return <Image src={image} alt='Saga Pass NFT' width={264} height={353} style={style} className='saga-pass-image' />
+}
